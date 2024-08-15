@@ -1,8 +1,7 @@
 package com.alugueaqui.repositories;
 
+import com.alugueaqui.entities.Administrador;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.alugueaqui.domain.Administrador;
 
 public interface AdministradorRepository extends JpaRepository<Administrador, Integer> {
 

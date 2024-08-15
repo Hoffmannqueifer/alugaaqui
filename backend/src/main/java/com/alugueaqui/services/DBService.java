@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.alugueaqui.domain.Administrador;
-import com.alugueaqui.domain.Funcionario;
-import com.alugueaqui.domain.Postagem;
+import com.alugueaqui.entities.Administrador;
+import com.alugueaqui.entities.Funcionario;
+import com.alugueaqui.entities.Postagem;
 import com.alugueaqui.enums.Perfil;
 import com.alugueaqui.repositories.AdministradorRepository;
 import com.alugueaqui.repositories.FuncionarioRepository;

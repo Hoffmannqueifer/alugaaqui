@@ -1,11 +1,11 @@
-package com.alugueaqui.domain;
+package com.alugueaqui.entities;
 
 import com.alugueaqui.enums.Perfil;
 
 import jakarta.persistence.Entity;
 
 @Entity
-public class Funcionario extends User {
+public class Funcionario extends Usuario {
 
 	public Funcionario() {
 		super();

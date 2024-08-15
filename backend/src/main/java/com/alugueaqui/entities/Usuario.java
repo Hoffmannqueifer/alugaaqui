@@ -1,25 +1,16 @@
-package com.alugueaqui.domain;
+package com.alugueaqui.entities;
+
+import com.alugueaqui.enums.Perfil;
+import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.alugueaqui.enums.Perfil;
-
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
 @Entity
-@Table(name = "users")
-public abstract class User {
+@Table(name = "usuarios")
+public abstract class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +27,11 @@ public abstract class User {
 	@CollectionTable(name = "PERFIS")
 	protected Set<Integer> perfis = new HashSet<>();
 	
-	public User() {
+	public Usuario() {
 		
 	}
 	
-	public User(Integer id, String nome, String cpf, String email, String senha) {
+	public Usuario(Integer id, String nome, String cpf, String email, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -112,7 +103,7 @@ public abstract class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Usuario other = (Usuario) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
 	}
 }
