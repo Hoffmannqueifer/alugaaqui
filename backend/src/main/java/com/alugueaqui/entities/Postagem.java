@@ -1,4 +1,4 @@
-package com.alugueaqui.domain;
+package com.alugueaqui.entities;
 
 import java.util.Base64;
 import java.util.Date;
