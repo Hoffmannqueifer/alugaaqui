@@ -33,3 +33,22 @@ img {
 button {
     margin-top: 0.5rem;
 }
+
+
+/* Media query para telas muito pequenas */
+@media (max-width: 480px) {
+    .container {
+        height: 100%; /* Ajusta ainda mais o padding para telas muito pequenas */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .form{
+        width: 17rem;
+        height: 28rem;
+    }
+    img {
+        height: 10rem;
+        width: 90%;
+    }
+}
