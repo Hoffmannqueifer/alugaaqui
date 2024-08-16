@@ -1,109 +1,75 @@
 package com.alugueaqui.entities;
 
-import com.alugueaqui.enums.Perfil;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.HashSet;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
+@Getter @Setter @NoArgsConstructor
 @Entity
 @Table(name = "usuarios")
-public abstract class Usuario {
+@EntityListeners(AuditingEntityListener.class)
+public class Usuario implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected Integer id;
-	protected String nome;
-	
-	@Column(unique = true)
-	protected String cpf;
-	@Column(unique = true)
-	protected String email;
-	protected String senha;
-	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "PERFIS")
-	protected Set<Integer> perfis = new HashSet<>();
-	
-	public Usuario() {
-		
-	}
-	
-	public Usuario(Integer id, String nome, String cpf, String email, String senha) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.email = email;
-		this.senha = senha;
-		addPerfil(Perfil.FUNCIONARIO);
-	}
-	
-	
-	public Integer getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "username", nullable = false, unique = true, length = 100)
+    private String username;
+    @Column(name = "password", nullable = false, length = 400)
+    private String password;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false, length = 30)
+    private Role role = Role.ROLE_FUNCIONARIO; //todo usuario cadastrado inicia como funcionario
 
-	public String getNome() {
-		return nome;
-	}
+    @CreatedDate
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @LastModifiedDate
+    @Column(name = "data_modificacao")
+    private LocalDateTime dataModificacao;
 
-	public String getCpf() {
-		return cpf;
-	}
+    @CreatedBy
+    @Column(name = "criado_por")
+    private String criadoPor;
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    @LastModifiedBy
+    @Column(name = "modificado_por")
+    private String modificadoPor;
 
-	public String getEmail() {
-		return email;
-	}
+    public enum Role {
+        ROLE_ADMIN, ROLE_FUNCIONARIO
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(id, usuario.id);
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public Set<Perfil> getPerfis() {
-		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
-	}
-
-	public void addPerfil(Perfil perfil) {
-		this.perfis.add(perfil.getCodigo());
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(cpf, id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
-	}
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                '}';
+    }
 }
