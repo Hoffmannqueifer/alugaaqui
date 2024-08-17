@@ -14,19 +14,19 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent {
 
   creds: Credenciais = {
-    email: '',
-    senha: ''
+    username: '',
+    password: ''
   }
 
   email = new FormControl(null, Validators.email);
-  senha = new FormControl(null, Validators.minLength(8));
+  senha = new FormControl(null, Validators.minLength(6));
 
   constructor(private toast: ToastrService, private service: AuthService, private router: Router){
 
   }
   logar(){
     this.service.authenticate(this.creds).subscribe(resposta => {
-      const authToken = resposta.headers?.get('Authorization')?.substring(7);
+      const authToken = resposta.body;
       if(authToken){
         this.service.sucessFullLogin(authToken)
         this.router.navigate([''])

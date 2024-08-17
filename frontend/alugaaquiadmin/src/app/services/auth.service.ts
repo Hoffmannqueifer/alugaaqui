@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   authenticate(creds: Credenciais){
-    return this.http.post('/login', creds, {
+    return this.http.post('/api/v1/auth', creds, {
       observe: 'response',
       responseType: 'text'
     })

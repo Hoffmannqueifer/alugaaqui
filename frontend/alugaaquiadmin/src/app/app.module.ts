@@ -11,6 +11,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 // Imports para componentes do Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -56,7 +58,13 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([]),
+    ToastrModule.forRoot({
+        timeOut: 4000,
+        closeButton: true,
+        progressBar: true
+      }
+    ),
+    HttpClientModule,
     BrowserAnimationsModule
   ],
   providers: [],
