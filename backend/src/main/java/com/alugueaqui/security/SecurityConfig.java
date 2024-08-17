@@ -17,7 +17,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(authorize -> authorize
                 .anyRequest().permitAll() // Permite todos os requests sem autenticação
             )
-            .csrf().disable(); // Desativa CSRF, se necessário
+            .csrf().disable() // Desativa CSRF, se necessário
+            .headers().frameOptions().sameOrigin(); //desativa temporariamente as configurações de segurança apenas para o H2 Console
 
         return http.build();
     }
