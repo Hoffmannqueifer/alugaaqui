@@ -1,13 +1,16 @@
 package com.alugueaqui.enums;
 
-public enum CondicaoVendaTipo {
-
-    A_VISTA(1, "Avista"), FINANCIADO(2, "Financiado"), CONSORCIO(3, "Consórcio");
+public enum ItemNegociadoTipo {
+    IMOVEL(1, "Imóvel"),
+    VEICULO(2, "Veículo"),
+    OBJETOS(3, "Objetos"),
+    SERVICOS(4, "Serviços"),
+    OUTROS(5, "Outros");
 
     private int value;
     private String descricao;
 
-    private CondicaoVendaTipo(int value, String descricao) {
+    private ItemNegociadoTipo(int value, String descricao) {
         this.value = value;
         this.descricao = descricao;
     }
@@ -20,8 +23,8 @@ public enum CondicaoVendaTipo {
         return descricao;
     }
 
-    public static CondicaoVendaTipo fromValue(int value) {
-        for (CondicaoVendaTipo tipo : CondicaoVendaTipo.values()) {
+    public static ItemNegociadoTipo fromValue(int value) {
+        for (ItemNegociadoTipo tipo : ItemNegociadoTipo.values()) {
             if (tipo.value == value) {
                 return tipo;
             }

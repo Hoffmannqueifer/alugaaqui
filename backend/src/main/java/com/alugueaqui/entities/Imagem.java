@@ -24,10 +24,9 @@ public class Imagem implements Serializable {
     private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name = "postagem_veiculo_id")
-    private PostagemVeiculo postagemVeiculo;
+    @JoinColumn(name = "postagem_id")
+    private Postagem postagem;
 
-    @ManyToOne
-    @JoinColumn(name = "postagem_imovel_id")
-    private PostagemImovel postagemImovel;
+    @Column(name = "stRegistro", columnDefinition = "integer default 1")
+    private Integer statusRegistro;
 }

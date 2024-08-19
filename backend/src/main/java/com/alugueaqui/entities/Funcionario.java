@@ -48,6 +48,9 @@ public class Funcionario implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
+    @Column(name = "stRegistro", columnDefinition = "integer default 1")
+    private Integer statusRegistro;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

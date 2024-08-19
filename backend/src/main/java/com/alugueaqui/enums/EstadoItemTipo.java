@@ -1,13 +1,13 @@
 package com.alugueaqui.enums;
 
-public enum CondicaoVendaTipo {
+public enum EstadoItemTipo {
 
-    A_VISTA(1, "Avista"), FINANCIADO(2, "Financiado"), CONSORCIO(3, "Consórcio");
+    NOVO(1, "Novo"), USADO(2, "Usado");
 
     private int value;
     private String descricao;
 
-    private CondicaoVendaTipo(int value, String descricao) {
+    private EstadoItemTipo(int value, String descricao) {
         this.value = value;
         this.descricao = descricao;
     }
@@ -20,13 +20,13 @@ public enum CondicaoVendaTipo {
         return descricao;
     }
 
-    public static CondicaoVendaTipo fromValue(int value) {
-        for (CondicaoVendaTipo tipo : CondicaoVendaTipo.values()) {
+    public static EstadoItemTipo fromValue(int value) {
+        for (EstadoItemTipo tipo : EstadoItemTipo.values()) {
             if (tipo.value == value) {
                 return tipo;
             }
         }
-        throw new IllegalArgumentException("Condição de venda inválida: " + value);
+        throw new IllegalArgumentException("Tipo do estado do imóvel é inválido: " + value);
     }
 
     @Override

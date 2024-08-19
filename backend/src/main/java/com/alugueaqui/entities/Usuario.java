@@ -72,4 +72,7 @@ public class Usuario implements Serializable {
                 "id=" + id +
                 '}';
     }
+
+    @Column(name = "stRegistro", columnDefinition = "integer default 1")
+    private Integer statusRegistro;
 }

@@ -87,7 +87,7 @@ public class UsuarioController {
             }
     )
     @PatchMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'FUNCIONARIO') AND #id == authentication.principal.id")
+    @PreAuthorize("hasAnyRole('ADMIN') AND #id == authentication.principal.id")
     public ResponseEntity<Void> updatePassword(@PathVariable Long id, @Valid
                                                   @RequestBody UsuarioSenhaDto usuarioSenhaDto) {
         usuarioService.editarSenha(id,usuarioSenhaDto.getSenhaAtual(),
