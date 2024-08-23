@@ -1,5 +1,6 @@
 package com.alugueaqui.entities;
 
+import com.alugueaqui.enums.PagamentoTipo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +23,9 @@ public class PagamentoPostagem {
     @Column(name = "valor", nullable = false)
     private Double valor;
 
-    @Column(name = "forma_pagamento", nullable = false, length = 50)
-    private String formaPagamento;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "pagamento_tipo", nullable = false, length = 50)
+    private PagamentoTipo pagamentoTipo;
 
     @Column(name = "status", nullable = false, length = 50)
     private String status;
@@ -35,6 +37,6 @@ public class PagamentoPostagem {
     @Column(name = "observacao")
     private String observacao;
 
-    @Column(name = "stRegistro", columnDefinition = "integer default 1")
-    private Integer statusRegistro;
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
 }

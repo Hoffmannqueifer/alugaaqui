@@ -11,4 +11,7 @@ public class FuncionarioResponseDto {
     private Long id;
     private String nome;
     private String cpf;
+    private String celular;
+    private String email;
+    private UsuarioResponseDto usuario;
 }

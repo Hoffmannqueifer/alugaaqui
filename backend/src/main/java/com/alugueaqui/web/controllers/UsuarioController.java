@@ -1,11 +1,12 @@
 package com.alugueaqui.web.controllers;
 
-import com.alugueaqui.web.dtos.UsuarioCreateDto;
-import com.alugueaqui.web.dtos.UsuarioResponseDto;
-import com.alugueaqui.web.dtos.UsuarioSenhaDto;
-import com.alugueaqui.web.dtos.mappers.UsuarioMapper;
+import com.alugueaqui.entities.Funcionario;
 import com.alugueaqui.entities.Usuario;
+import com.alugueaqui.servicies.FuncionarioService;
 import com.alugueaqui.servicies.UsuarioService;
+import com.alugueaqui.web.dtos.*;
+import com.alugueaqui.web.dtos.mappers.FuncionarioMapper;
+import com.alugueaqui.web.dtos.mappers.UsuarioMapper;
 import com.alugueaqui.web.exceptions.ErrorMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -30,6 +31,7 @@ import java.util.List;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final FuncionarioService funcionarioService;
 
     @Operation(summary = "Criar um novo usuário", description = "Recurso para criar um novo usuário",
         responses = {
@@ -44,10 +46,16 @@ public class UsuarioController {
                             ErrorMessage.class)))
         }
     )
-    @PostMapping
-    public ResponseEntity<UsuarioResponseDto> create(@Valid @RequestBody UsuarioCreateDto createDto) {
+    @PostMapping("/adm")
+    public ResponseEntity<UsuarioResponseDto> createUserAdmin(@Valid @RequestBody UsuarioCreateDto createDto) {
         Usuario user = usuarioService.salvar(UsuarioMapper.toUsuario(createDto));
         return ResponseEntity.status(HttpStatus.CREATED).body(UsuarioMapper.toDto(user));
+    }
+
+    @PostMapping("/funcionario")
+    public ResponseEntity<FuncionarioResponseDto> createUserFuncionario(@Valid @RequestBody FuncionarioCreateDto createDto) {
+        Funcionario funcionario = funcionarioService.criarFuncionario(createDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(FuncionarioMapper.toDto(funcionario));
     }
 
     @Operation(summary = "Recuperar um usuário pelo id", description = "Requisição exige um Bearer Token. Acesso " +

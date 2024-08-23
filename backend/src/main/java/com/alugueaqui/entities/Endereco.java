@@ -37,6 +37,6 @@ public class Endereco implements Serializable {
     @Column(name = "cep", nullable = false, length = 10)
     private String cep;
 
-    @Column(name = "stRegistro", columnDefinition = "integer default 1")
-    private Integer statusRegistro;
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
 }

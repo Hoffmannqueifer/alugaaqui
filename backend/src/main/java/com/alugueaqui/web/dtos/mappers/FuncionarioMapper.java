@@ -14,7 +14,16 @@ public class FuncionarioMapper {
         return new ModelMapper().map(createDto, Funcionario.class);
     }
 
+//    public static FuncionarioResponseDto toDto(Funcionario funcionario) {
+//        return new ModelMapper().map(funcionario, FuncionarioResponseDto.class);
+//    }
+
     public static FuncionarioResponseDto toDto(Funcionario funcionario) {
-        return new ModelMapper().map(funcionario, FuncionarioResponseDto.class);
+        ModelMapper modelMapper = new ModelMapper();
+
+        modelMapper.typeMap(Funcionario.class, FuncionarioResponseDto.class)
+                .addMapping(Funcionario::getUsuario, FuncionarioResponseDto::setUsuario);
+
+        return modelMapper.map(funcionario, FuncionarioResponseDto.class);
     }
 }

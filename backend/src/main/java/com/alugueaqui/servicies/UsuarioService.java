@@ -5,6 +5,7 @@ import com.alugueaqui.exceptions.EntityNotFoundException;
 import com.alugueaqui.exceptions.PasswordInvalidException;
 import com.alugueaqui.exceptions.UsernameUniqueViolationException;
 import com.alugueaqui.repositories.UsuarioRepository;
+import com.alugueaqui.util.Constantes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,6 +25,7 @@ public class UsuarioService {
     public Usuario salvar(Usuario usuario) {
         try {
             usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+            usuario.setStatusRegistro(Constantes.ativo);
             return usuarioRepository.save(usuario);
         } catch (DataIntegrityViolationException exception){
             throw new UsernameUniqueViolationException(String.format("Username {%s} já cadastrado",

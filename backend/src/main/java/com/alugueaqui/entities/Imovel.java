@@ -44,11 +44,11 @@ public class Imovel extends Item {
     @Column(name = "preco", nullable = false)
     private Double preco;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "endereco_id", nullable = false)
-    private Endereco enderecoImovel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "imovel_categoria_id", nullable = false)
     private ImovelCategoria imovelCategoria;
+
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
 }

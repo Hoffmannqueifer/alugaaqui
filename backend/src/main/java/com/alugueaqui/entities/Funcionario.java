@@ -28,6 +28,13 @@ public class Funcionario implements Serializable {
     private String nome;
     @Column(name = "cpf", nullable = false, unique = true, length = 11)
     private String cpf;
+
+    @Column(name = "email", nullable = false, unique = true, length = 100)
+    private String email;
+
+    @Column(name = "celular", nullable = false, length = 11)
+    private String celular;
+
     @OneToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
@@ -48,8 +55,8 @@ public class Funcionario implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    @Column(name = "stRegistro", columnDefinition = "integer default 1")
-    private Integer statusRegistro;
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
 
     @Override
     public boolean equals(Object o) {

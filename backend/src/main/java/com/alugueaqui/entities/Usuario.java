@@ -1,5 +1,6 @@
 package com.alugueaqui.entities;
 
+import com.alugueaqui.util.Constantes;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,7 @@ public class Usuario implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false, length = 30)
-    private Role role = Role.ROLE_FUNCIONARIO; //todo usuario cadastrado inicia como funcionario
+    private Role role = Role.ROLE_ADMIN;
 
     @CreatedDate
     @Column(name = "data_criacao")
@@ -49,8 +50,17 @@ public class Usuario implements Serializable {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
+    @Column(name = "stregistro", columnDefinition = "integer default 1")
+    private Integer statusRegistro = Constantes.ativo;
+
     public enum Role {
         ROLE_ADMIN, ROLE_FUNCIONARIO
+    }
+
+    public Usuario(Usuario usuario) {
+        this.id = usuario.id;
+        this.username = usuario.username;
+        this.role = Role.ROLE_FUNCIONARIO;
     }
 
     @Override
@@ -73,6 +83,4 @@ public class Usuario implements Serializable {
                 '}';
     }
 
-    @Column(name = "stRegistro", columnDefinition = "integer default 1")
-    private Integer statusRegistro;
 }

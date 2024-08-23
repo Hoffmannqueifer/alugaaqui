@@ -1,11 +1,15 @@
 package com.alugueaqui.servicies;
 
 import com.alugueaqui.entities.Funcionario;
+import com.alugueaqui.entities.Usuario;
 import com.alugueaqui.exceptions.CpfUniqueViolationException;
 import com.alugueaqui.exceptions.EntityNotFoundException;
-import com.alugueaqui.exceptions.FuncionarioUniqueViolationException;
 import com.alugueaqui.repositories.FuncionarioRepository;
 import com.alugueaqui.repositories.projections.FuncionarioProjection;
+import com.alugueaqui.util.Constantes;
+import com.alugueaqui.web.dtos.FuncionarioCreateDto;
+import com.alugueaqui.web.dtos.mappers.FuncionarioMapper;
+import com.alugueaqui.web.dtos.mappers.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -18,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class FuncionarioService {
 
     private final FuncionarioRepository funcionarioRepository;;
+    private final UsuarioService usuarioService;
 
     @Transactional
     public Funcionario salvar(Funcionario funcionario) {
@@ -30,9 +35,23 @@ public class FuncionarioService {
 
             return funcionarioRepository.save(funcionario);
         } catch (DataIntegrityViolationException exception) {
-            throw new FuncionarioUniqueViolationException(String.format("Funcionário não pode ser cadastrado, Funcionário já " +
-                    "possui cadastro no sistema"));
+            throw new DataIntegrityViolationException(String.format("Funcionario '%s' não pode ser cadastrado", funcionario.getNome()));
         }
+    }
+
+    @Transactional
+    public Funcionario criarFuncionario(FuncionarioCreateDto funcionarioCreateDto) {
+        Usuario usuario = UsuarioMapper.toUsuario(funcionarioCreateDto.getUsuario());
+        usuario.setRole(Usuario.Role.ROLE_FUNCIONARIO);
+        usuario.setStatusRegistro(Constantes.ativo);
+        usuario = usuarioService.salvar(usuario);
+
+        Funcionario funcionario = FuncionarioMapper.toFuncionario(funcionarioCreateDto);
+        funcionario.setUsuario(usuario);
+        funcionario.setEmail(usuario.getUsername());
+        funcionario.setStatusRegistro(Constantes.ativo);
+
+        return salvar(funcionario);
     }
 
     @Transactional(readOnly = true)

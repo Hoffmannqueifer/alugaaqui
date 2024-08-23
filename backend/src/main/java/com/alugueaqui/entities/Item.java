@@ -58,6 +58,6 @@ public abstract class Item {
     @JoinColumn(name = "endereco_id", nullable = false)
     private Endereco endereco;
 
-    @Column(name = "stRegistro", columnDefinition = "integer default 1")
-    private Integer statusRegistro;
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
 }

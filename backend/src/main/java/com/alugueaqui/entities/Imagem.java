@@ -27,6 +27,6 @@ public class Imagem implements Serializable {
     @JoinColumn(name = "postagem_id")
     private Postagem postagem;
 
-    @Column(name = "stRegistro", columnDefinition = "integer default 1")
-    private Integer statusRegistro;
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
 }

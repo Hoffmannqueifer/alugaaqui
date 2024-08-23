@@ -60,6 +60,6 @@ public class Postagem {
     @Column(name = "modificado_por")
     private String modificadoPor;
 
-    @Column(name = "stRegistro", columnDefinition = "integer default 1")
-    private Integer statusRegistro;
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
 }

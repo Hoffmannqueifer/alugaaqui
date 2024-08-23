@@ -34,4 +34,7 @@ public class Veiculo extends Item {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "veiculo_categoria_id", nullable = false)
     private VeiculoCategoria veiculoCategoria;
+
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
 }

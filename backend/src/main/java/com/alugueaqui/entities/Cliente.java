@@ -24,7 +24,6 @@ public class Cliente {
     @Column(name = "telefone")
     private String telefone;
 
-    @ManyToOne
-    @JoinColumn(name = "endereco_id", nullable = false)
-    private Endereco endereco;
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
 }
