@@ -4,4 +4,5 @@ export interface User{
     senha: string;
     cpf: string;
     nome: string;
+    celular: string;
 }

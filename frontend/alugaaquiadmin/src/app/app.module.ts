@@ -29,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { UserCreateComponent } from './components/user/user-create/user-create.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatCardModule } from '@angular/material/card';
     HomeComponent,
     LoginComponent,
     HeaderComponent,
-    NavComponent
+    NavComponent,
+    UserCreateComponent 
   ],
   imports: [
     BrowserModule,
