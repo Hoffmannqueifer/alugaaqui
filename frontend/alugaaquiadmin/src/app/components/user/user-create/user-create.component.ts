@@ -12,16 +12,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserCreateComponent {
   hide = true;
-  user: User = {
-    id: 0,
+  user: any = {
     nome: '',
     cpf: '',
-    email: '',
-    senha: '',
-    celular: ''
+    celular: '',
+    usuario: {
+      username: '',
+      password: ''
+    }
   }
 
-  nome: FormControl = new FormControl(null, Validators.minLength(3));
+  nome: FormControl = new FormControl(null, Validators.minLength(5));
   cpf: FormControl = new FormControl(null, Validators.required);
   email: FormControl = new FormControl(null, Validators.email);
   senha: FormControl = new FormControl(null, Validators.minLength(6));
@@ -30,6 +31,11 @@ export class UserCreateComponent {
   constructor(private service: UserService, private toast : ToastrService, private router: Router){}
 
   create(){
+    this.user.usuario.username = this.email.value;
+    this.user.usuario.password = this.senha.value;
+    this.user.nome = this.nome.value;
+    this.user.cpf = this.cpf.value;
+    this.user.celular = this.celular.value;
     this.service.create(this.user).subscribe( () =>{
       this.toast.success('Funcionario cadastrado com sucesso', 'Cadastro');
       this.router.navigate(['users']);
