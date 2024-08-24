@@ -26,9 +26,7 @@ export class LoginComponent {
   }
   logar(){
     this.service.authenticate(this.creds).subscribe(resposta => {
-      const authToken = resposta.body;
-      if(authToken){
-        this.service.sucessFullLogin(authToken)
+      if(resposta){
         this.router.navigate([''])
       }else{
         this.toast.error('Token de autenticação não encontrado', 'Login');
