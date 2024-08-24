@@ -22,15 +22,15 @@ h1{
 
 .add {
     margin-bottom: 2rem;
-    background: linear-gradient(360deg, #6C63FF 0%, #9C90FF 0%, #3F3D9D 100%);
+    background: var(--corButtonCreate);
 }
 
 .edit {
-    color: #736ecf;
+    color: var(--corButtonEdit);
 }
 
 .delete {
-    color: rgb(245, 145, 145);
+    color: var(--corButtonDelete);
 }
 
 @media (max-width: 480px) {

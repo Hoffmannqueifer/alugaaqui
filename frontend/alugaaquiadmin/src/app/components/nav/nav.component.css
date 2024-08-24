@@ -5,7 +5,7 @@
 .sidenav {
     width: 13rem;
     color: white;
-    background: linear-gradient(360deg, #6C63FF 0%, #9C90FF 0%, #3F3D9D 100%);
+    background: var(--corBackgroundPrincipais);
 }
 
 img {
@@ -25,7 +25,7 @@ img {
 .menu {
     margin: 1rem 0 0 1rem;
     color: white;
-    background: linear-gradient(360deg, #6C63FF 0%, #9C90FF 0%, #3F3D9D 100%);
+    background: var(--corBackgroundPrincipais);
 }
 
 i {

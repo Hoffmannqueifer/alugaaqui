@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-
+:root{
+    --corBackgroundPrincipais: linear-gradient(360deg, #6C63FF 0%, #9C90FF 0%, #3F3D9D 100%);
+    --corButtonCreate:  rgb(23, 74, 241);
+    --corButtonEdit:   rgb(139, 204, 137);
+    --corButtonDelete:  rgb(245, 145, 145);
+    --corButtonCancelarVoltar: rgb(236, 227, 227);
+    --corLetraButton: rgb(14, 8, 8);
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
