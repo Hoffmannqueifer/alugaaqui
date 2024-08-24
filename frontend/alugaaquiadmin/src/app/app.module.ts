@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxMaskModule } from 'ngx-mask';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 
 // Imports para componentes do Angular Material
@@ -68,6 +69,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
       }
     ),
     HttpClientModule,
+    NgxMaskModule.forRoot(),
     BrowserAnimationsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

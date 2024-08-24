@@ -26,7 +26,7 @@ export class UserCreateComponent {
   cpf: FormControl = new FormControl(null, Validators.required);
   email: FormControl = new FormControl(null, Validators.email);
   senha: FormControl = new FormControl(null, Validators.minLength(6));
-  celular: FormControl = new FormControl(null, Validators.minLength(9));
+  celular: FormControl = new FormControl(null, Validators.minLength(11));
 
   constructor(private service: UserService, private toast : ToastrService, private router: Router){}
 
@@ -51,6 +51,6 @@ export class UserCreateComponent {
     })
   }
   validarCampos() : boolean{
-    return this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid;
+    return this.nome.valid && this.cpf.valid && this.email.valid && this.celular.valid && this.senha.valid;
   }
 }
