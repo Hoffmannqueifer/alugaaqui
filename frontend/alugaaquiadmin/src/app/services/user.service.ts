@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
+import { PaginatedResponseUser } from '../models/PaginatedResponseUser';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,8 +11,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<User[]>{
-    return this.http.get<User[]>('/api/v1/usuarios');
+  findAll(): Observable<PaginatedResponseUser>{
+    return this.http.get<PaginatedResponseUser>('/api/v1/funcionarios');
   }
 
   create(user : User): Observable<User>{

@@ -26,7 +26,7 @@ export class UserComponent {
 
   ELEMENT_DATA: User[] = [];
 
-  displayedColumns: string[] = ['id', 'nome', 'cpf', 'username', 'acoes'];
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'email','celular', 'acoes'];
   dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -41,7 +41,8 @@ export class UserComponent {
 
   findAll(){
     this.service.findAll().subscribe( resposta => {
-      this.ELEMENT_DATA = resposta
+      console.log(resposta)
+      this.ELEMENT_DATA = resposta.content;
       this.dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
     })

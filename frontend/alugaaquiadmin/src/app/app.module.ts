@@ -62,15 +62,16 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
-        timeOut: 4000,
+        disableTimeOut: false,
+        positionClass: 'toast-top-right',
         closeButton: true,
         progressBar: true
       }
     ),
     HttpClientModule,
-    NgxMaskModule.forRoot(),
-    BrowserAnimationsModule
+    NgxMaskModule.forRoot()
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
