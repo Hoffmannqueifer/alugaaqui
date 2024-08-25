@@ -20,18 +20,21 @@ export class LoginComponent {
 
   email = new FormControl(null, Validators.email);
   senha = new FormControl(null, Validators.minLength(6));
-
+  isLoading: boolean = false;
   constructor(private toast: ToastrService, private service: AuthService, private router: Router){
 
   }
   logar(){
+    this.isLoading = true;
     this.service.authenticate(this.creds).subscribe(resposta => {
       if(resposta){
+        this.isLoading = false;
         this.router.navigate([''])
       }else{
         this.toast.error('Token de autenticação não encontrado', 'Login');
       }
     }, () => {
+      this.isLoading = false;
       this.toast.error('Usuário e/ou senha inválidos!!', 'Login')
     });
   }

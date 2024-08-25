@@ -34,6 +34,14 @@ button {
     margin-top: 0.5rem;
 }
 
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  }
+
 
 /* Media query para telas muito pequenas */
 @media (max-width: 480px) {
