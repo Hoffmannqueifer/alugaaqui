@@ -41,4 +41,23 @@ export class AuthService {
   logout(){
     localStorage.clear();
   }
+
+  getUserRole(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.jwtService.decodeToken(token);
+      return decodedToken.role; // Supondo que o papel esteja armazenado como 'role'
+    }
+    return null;
+  }
+
+  isAdmin(): boolean {
+    const role = this.getUserRole();
+    return role === 'ADMIN';
+  }
+
+  isFuncionario(): boolean {
+    const role = this.getUserRole();
+    return role === 'FUNCIONARIO';
+  }
 }
