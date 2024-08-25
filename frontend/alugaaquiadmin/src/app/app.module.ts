@@ -32,6 +32,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
         disableTimeOut: false,
         positionClass: 'toast-top-right',

@@ -28,7 +28,7 @@ export class UserComponent {
 
   displayedColumns: string[] = ['id', 'nome', 'cpf', 'email','celular', 'acoes'];
   dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
-
+  isLoading: boolean = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private service: UserService, private toast : ToastrService, private router: Router){}
@@ -40,11 +40,13 @@ export class UserComponent {
   }
 
   findAll(){
+    this.isLoading = true;
     this.service.findAll().subscribe( resposta => {
       console.log(resposta)
       this.ELEMENT_DATA = resposta.content;
       this.dataSource = new MatTableDataSource<User>(this.ELEMENT_DATA);
       this.dataSource.paginator = this.paginator;
+      this.isLoading = false;
     })
   }
 }
