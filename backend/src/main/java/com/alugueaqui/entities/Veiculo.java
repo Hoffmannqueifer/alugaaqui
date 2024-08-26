@@ -36,5 +36,5 @@ public class Veiculo extends Item {
     private VeiculoCategoria veiculoCategoria;
 
     @Column(name = "stregistro")
-    private Integer statusRegistro = 1;
+    private Integer statusRegistro;
 }

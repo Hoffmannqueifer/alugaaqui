@@ -1,6 +1,6 @@
 package com.alugueaqui.entities;
 
-import com.alugueaqui.enums.CondicaoVendaTipo;
+import com.alugueaqui.enums.NegociacaoTipo;
 import com.alugueaqui.enums.EstadoItemTipo;
 import com.alugueaqui.enums.ItemNegociadoTipo;
 import jakarta.persistence.*;
@@ -19,10 +19,6 @@ public abstract class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private Cliente cliente;
 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
@@ -44,8 +40,8 @@ public abstract class Item {
     private ItemNegociadoTipo itemNegociadoTipo;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "condicao_venda_tipo")
-    private CondicaoVendaTipo condicaoVendaTipo;
+    @Column(name = "negociacao_tipo")
+    private NegociacaoTipo negociaoTipo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_item_tipo", nullable = false)
@@ -56,7 +52,7 @@ public abstract class Item {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id", nullable = false)
-    private Endereco endereco;
+    private Endereco enderecoItemNegociado;
 
     @Column(name = "stregistro")
     private Integer statusRegistro = 1;

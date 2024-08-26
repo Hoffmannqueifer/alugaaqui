@@ -1,6 +1,6 @@
 package com.alugueaqui.web.controllers;
 
-import com.alugueaqui.web.dtos.UsuarioResponseDto;
+import com.alugueaqui.web.dtos.responses.UsuarioResponseDto;
 import com.alugueaqui.web.dtos.UsuarioLoginDto;
 import com.alugueaqui.jwt.JwtToken;
 import com.alugueaqui.jwt.JwtUserDetailsService;

@@ -1,7 +1,5 @@
 package com.alugueaqui.entities;
 
-import com.alugueaqui.enums.CondicaoVendaTipo;
-import com.alugueaqui.enums.EstadoItemTipo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,18 +30,6 @@ public class Imovel extends Item {
 
     @Column(name = "caracteristicas")
     private String caracteristicas;
-
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "estado_imovel", nullable = false)
-    private EstadoItemTipo estadoImovel;
-
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "condicao_venda", nullable = false)
-    private CondicaoVendaTipo condicaoVenda;
-
-    @Column(name = "preco", nullable = false)
-    private Double preco;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "imovel_categoria_id", nullable = false)

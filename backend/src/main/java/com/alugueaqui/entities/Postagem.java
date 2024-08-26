@@ -41,6 +41,10 @@ public class Postagem {
     @OneToMany(mappedBy = "postagem")
     private List<PagamentoPostagem> pagamentos;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
     @Column(name = "data_encerramento")
     private LocalDate dataFim;
 

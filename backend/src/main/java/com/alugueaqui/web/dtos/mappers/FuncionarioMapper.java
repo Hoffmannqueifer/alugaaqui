@@ -1,7 +1,7 @@
 package com.alugueaqui.web.dtos.mappers;
 
-import com.alugueaqui.web.dtos.FuncionarioCreateDto;
-import com.alugueaqui.web.dtos.FuncionarioResponseDto;
+import com.alugueaqui.web.dtos.creates.FuncionarioCreateDto;
+import com.alugueaqui.web.dtos.responses.FuncionarioResponseDto;
 import com.alugueaqui.entities.Funcionario;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

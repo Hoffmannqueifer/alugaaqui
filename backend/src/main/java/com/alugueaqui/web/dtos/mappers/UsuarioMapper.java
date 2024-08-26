@@ -1,7 +1,7 @@
 package com.alugueaqui.web.dtos.mappers;
 
-import com.alugueaqui.web.dtos.UsuarioCreateDto;
-import com.alugueaqui.web.dtos.UsuarioResponseDto;
+import com.alugueaqui.web.dtos.creates.UsuarioCreateDto;
+import com.alugueaqui.web.dtos.responses.UsuarioResponseDto;
 import com.alugueaqui.entities.Usuario;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;

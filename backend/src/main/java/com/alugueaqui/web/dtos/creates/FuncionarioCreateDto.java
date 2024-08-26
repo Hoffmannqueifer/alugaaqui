@@ -1,4 +1,4 @@
-package com.alugueaqui.web.dtos;
+package com.alugueaqui.web.dtos.creates;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

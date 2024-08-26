@@ -1,4 +1,4 @@
-package com.alugueaqui.web.dtos;
+package com.alugueaqui.web.dtos.responses;
 
 import lombok.*;
 

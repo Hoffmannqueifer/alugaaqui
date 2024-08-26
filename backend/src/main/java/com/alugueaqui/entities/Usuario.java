@@ -1,6 +1,6 @@
 package com.alugueaqui.entities;
 
-import com.alugueaqui.util.Constantes;
+import com.alugueaqui.util.ConstantesBD;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,7 +51,7 @@ public class Usuario implements Serializable {
     private String modificadoPor;
 
     @Column(name = "stregistro", columnDefinition = "integer default 1")
-    private Integer statusRegistro = Constantes.ativo;
+    private Integer statusRegistro = ConstantesBD.ativo;
 
     public enum Role {
         ROLE_ADMIN, ROLE_FUNCIONARIO
