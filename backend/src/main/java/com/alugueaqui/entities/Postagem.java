@@ -38,8 +38,8 @@ public class Postagem {
     @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Imagem> imagens = new ArrayList<>();
 
-    @OneToMany(mappedBy = "postagem")
-    private List<PagamentoPostagem> pagamentos;
+    @OneToOne(mappedBy = "postagem")
+    private PagamentoPostagem pagamento;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)

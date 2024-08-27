@@ -2,10 +2,10 @@ package com.alugueaqui.enums;
 
 public enum NegociacaoTipo {
 
-    A_VISTA(1, "Avista"),
-    FINANCIADO(2, "Financiado"),
-    CONSORCIO(3, "Consórcio"),
-    ALUGUEL(4, "Aluguel");
+    A_VISTA(1, "AVISTA"),
+    FINANCIADO(2, "FINANCIADO"),
+    CONSORCIO(3, "CONSORCIO"),
+    ALUGUEL(4, "ALUGUEL");
 
     private int value;
     private String descricao;

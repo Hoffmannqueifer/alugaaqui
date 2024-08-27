@@ -19,11 +19,11 @@ public class Endereco implements Serializable {
     @Column(name = "logradouro", nullable = false, length = 100)
     private String logradouro;
 
-    @Column(name = "complemento", nullable = false, length = 300)
+    @Column(name = "complemento", length = 300)
     private String complemento;
 
-    @Column(name = "numero", nullable = false, length = 10)
-    private String numero;
+    @Column(name = "numero")
+    private Integer numero;
 
     @Column(name = "bairro", nullable = false, length = 50)
     private String bairro;

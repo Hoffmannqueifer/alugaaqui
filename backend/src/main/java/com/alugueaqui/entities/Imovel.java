@@ -8,10 +8,17 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 @Entity
 @Table(name = "IMOVEIS")
-public class Imovel extends Item {
+public class Imovel {
 
-    @Column(name = "area")
-    private Double area;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "comprimento")
+    private Double comprimento;
+
+    @Column(name = "largura")
+    private Double largura;
 
     @Column(name = "quartos")
     private Integer quartos;

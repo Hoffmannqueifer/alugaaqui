@@ -1,8 +1,8 @@
 package com.alugueaqui.entities;
 
-import com.alugueaqui.enums.NegociacaoTipo;
 import com.alugueaqui.enums.EstadoItemTipo;
 import com.alugueaqui.enums.ItemNegociadoTipo;
+import com.alugueaqui.enums.NegociacaoTipo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "ITENS")
 @EntityListeners(AuditingEntityListener.class)
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Item {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,10 +35,6 @@ public abstract class Item {
     private Double valorTotalParcelado;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "item_negociado", nullable = false)
-    private ItemNegociadoTipo itemNegociadoTipo;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "negociacao_tipo")
     private NegociacaoTipo negociaoTipo;
 
@@ -50,10 +45,23 @@ public abstract class Item {
     @Column(name = "observacao")
     private String observacao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "endereco_id", nullable = false)
-    private Endereco enderecoItemNegociado;
-
     @Column(name = "stregistro")
     private Integer statusRegistro = 1;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "endereco_id", nullable = false)
+    private Endereco endereco;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "item_negociado", nullable = false)
+    private ItemNegociadoTipo itemNegociadoTipo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "veiculo_id")
+    private Veiculo veiculo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "imovel_id")
+    private Imovel imovel;
+
 }
