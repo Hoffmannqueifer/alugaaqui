@@ -6,8 +6,8 @@ import com.alugueaqui.exceptions.CpfUniqueViolationException;
 import com.alugueaqui.exceptions.EntityNotFoundException;
 import com.alugueaqui.repositories.FuncionarioRepository;
 import com.alugueaqui.repositories.projections.FuncionarioProjection;
-import com.alugueaqui.util.Constantes;
-import com.alugueaqui.web.dtos.FuncionarioCreateDto;
+import com.alugueaqui.util.ConstantesBD;
+import com.alugueaqui.web.dtos.creates.FuncionarioCreateDto;
 import com.alugueaqui.web.dtos.mappers.FuncionarioMapper;
 import com.alugueaqui.web.dtos.mappers.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
@@ -43,13 +43,13 @@ public class FuncionarioService {
     public Funcionario criarFuncionario(FuncionarioCreateDto funcionarioCreateDto) {
         Usuario usuario = UsuarioMapper.toUsuario(funcionarioCreateDto.getUsuario());
         usuario.setRole(Usuario.Role.ROLE_FUNCIONARIO);
-        usuario.setStatusRegistro(Constantes.ativo);
+        usuario.setStatusRegistro(ConstantesBD.ativo);
         usuario = usuarioService.salvar(usuario);
 
         Funcionario funcionario = FuncionarioMapper.toFuncionario(funcionarioCreateDto);
         funcionario.setUsuario(usuario);
         funcionario.setEmail(usuario.getUsername());
-        funcionario.setStatusRegistro(Constantes.ativo);
+        funcionario.setStatusRegistro(ConstantesBD.ativo);
 
         return salvar(funcionario);
     }

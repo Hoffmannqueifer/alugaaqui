@@ -1,6 +1,7 @@
-package com.alugueaqui.web.dtos;
+package com.alugueaqui.web.dtos.creates;
 
-import jakarta.validation.Valid;
+import com.alugueaqui.util.ConstantesBD;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -10,18 +11,22 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-public class FuncionarioCreateDto {
+public class ClienteCreateDto {
 
-    @NotBlank
-    @Size(min = 5, max = 200)
+
+    @NotBlank(message = "O nome é obrigatório")
     private String nome;
-    @NotBlank
-    @Size(min = 11, max = 11)
-    @CPF
+
+    @CPF(message = "CPF inválido")
     private String cpf;
+    @Column(name = "email", unique = true)
+    private String email;
+
     @NotBlank
     @Size(min = 11, max = 11)
     private String celular;
-    @Valid
-    private UsuarioCreateDto usuario;
+
+    @Column(name = "stregistro")
+    private Integer statusRegistro = ConstantesBD.ativo;
+
 }

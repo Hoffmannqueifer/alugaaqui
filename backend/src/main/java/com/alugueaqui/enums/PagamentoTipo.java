@@ -2,11 +2,11 @@ package com.alugueaqui.enums;
 
 public enum PagamentoTipo {
     PIX(1, "Pix"),
-    CARTAO_CREDITO(2, "Cartão de Crédito"),
-    CARTAO_DEBITO(3, "Cartão de Debito"),
-    BOLETO(4, "Boleto"),
-    DINHEIRO(5, "Dinheiro"),
-    TRANF_BANCARIA(6, "Tranferência Bancária");
+    CARTAO_CREDITO(2, "CARTAO DE CREDITO"),
+    CARTAO_DEBITO(3, "CARTAO DE DEBITO"),
+    BOLETO(4, "BOLERO BANCARIO"),
+    DINHEIRO(5, "DIHEIRO"),
+    TRANF_BANCARIA(6, "TRANSFERENCIA BANCARIA");
 
     private int value;
     private String descricao;

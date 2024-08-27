@@ -1,11 +1,11 @@
 package com.alugueaqui.enums;
 
 public enum ItemNegociadoTipo {
-    IMOVEL(1, "Imóvel"),
-    VEICULO(2, "Veículo"),
-    OBJETOS(3, "Objetos"),
-    SERVICOS(4, "Serviços"),
-    OUTROS(5, "Outros");
+    IMOVEL(1, "IMOVEL"),
+    VEICULO(2, "VEICULO"),
+    OBJETOS(3, "OBJETOS"),
+    SERVICOS(4, "SERVICOS"),
+    OUTROS(5, "OUTROS");
 
     private int value;
     private String descricao;

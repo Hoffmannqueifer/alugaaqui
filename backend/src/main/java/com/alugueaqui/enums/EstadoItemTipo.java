@@ -2,7 +2,7 @@ package com.alugueaqui.enums;
 
 public enum EstadoItemTipo {
 
-    NOVO(1, "Novo"), USADO(2, "Usado");
+    NOVO(1, "NOVO"), USADO(2, "USADO");
 
     private int value;
     private String descricao;

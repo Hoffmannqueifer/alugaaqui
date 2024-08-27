@@ -1,8 +1,8 @@
 package com.alugueaqui.entities;
 
-import com.alugueaqui.enums.CondicaoVendaTipo;
 import com.alugueaqui.enums.EstadoItemTipo;
 import com.alugueaqui.enums.ItemNegociadoTipo;
+import com.alugueaqui.enums.NegociacaoTipo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,16 +13,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "ITENS")
 @EntityListeners(AuditingEntityListener.class)
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Item {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private Cliente cliente;
 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
@@ -40,12 +35,8 @@ public abstract class Item {
     private Double valorTotalParcelado;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "item_negociado", nullable = false)
-    private ItemNegociadoTipo itemNegociadoTipo;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "condicao_venda_tipo")
-    private CondicaoVendaTipo condicaoVendaTipo;
+    @Column(name = "negociacao_tipo")
+    private NegociacaoTipo negociaoTipo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_item_tipo", nullable = false)
@@ -54,10 +45,23 @@ public abstract class Item {
     @Column(name = "observacao")
     private String observacao;
 
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id", nullable = false)
     private Endereco endereco;
 
-    @Column(name = "stregistro")
-    private Integer statusRegistro = 1;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "item_negociado", nullable = false)
+    private ItemNegociadoTipo itemNegociadoTipo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "veiculo_id")
+    private Veiculo veiculo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "imovel_id")
+    private Imovel imovel;
+
 }

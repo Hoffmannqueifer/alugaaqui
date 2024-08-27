@@ -8,7 +8,11 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor
 @Entity
 @Table(name = "VEICULOS")
-public class Veiculo extends Item {
+public class Veiculo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "marca", nullable = false)
     private String marca;

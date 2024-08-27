@@ -21,8 +21,8 @@ public class Cliente {
     private String cpf;
     @Column(name = "email", unique = true)
     private String email;
-    @Column(name = "telefone")
-    private String telefone;
+    @Column(name = "celular")
+    private String celular;
 
     @Column(name = "stregistro")
     private Integer statusRegistro = 1;
