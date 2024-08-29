@@ -48,7 +48,7 @@ public class Item {
     @Column(name = "stregistro")
     private Integer statusRegistro = 1;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "endereco_id", nullable = false)
     private Endereco endereco;
 
@@ -56,11 +56,11 @@ public class Item {
     @Column(name = "item_negociado", nullable = false)
     private ItemNegociadoTipo itemNegociadoTipo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "veiculo_id")
     private Veiculo veiculo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "imovel_id")
     private Imovel imovel;
 

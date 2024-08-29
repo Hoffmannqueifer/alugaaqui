@@ -5,6 +5,8 @@ import com.alugueaqui.entities.Item;
 import com.alugueaqui.repositories.EnderecoRepository;
 import com.alugueaqui.repositories.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +16,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 @Service
 public class ItemService {
-    
+
     private final ItemRepository itemRepository;
     private final EnderecoRepository enderecoRepository;
 
@@ -44,7 +46,7 @@ public class ItemService {
     public List<Item> buscarTodosItens() {
         return itemRepository.findAll();
     }
-    
+
 
     public void validateCamposItem(Item item) {
 
@@ -73,5 +75,10 @@ public class ItemService {
         if (item.getValorTotalParcelado() != null && item.getValorTotalParcelado() < 0) {
             throw new IllegalArgumentException  ("Valor total parcelado deve ser positivo.");
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Item> buscarTodos(Pageable pageable) {
+        return itemRepository.findAllPageable(pageable);
     }
 }

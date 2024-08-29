@@ -19,6 +19,7 @@ public class ItemResponseDto {
     private String observacao;
     private Integer statusRegistro;
     private String itemNegociadoTipo;
+
     private VeiculoResponseDto veiculo;
     private EnderecoResponseDto endereco;
 }
