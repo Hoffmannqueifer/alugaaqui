@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { PaginatedResponseUser } from '../models/PaginatedResponseUser';
+import { PaginatedResponseUser } from '../models/paginatedResponseUser';
 import { Observable } from 'rxjs';
 
 @Injectable({

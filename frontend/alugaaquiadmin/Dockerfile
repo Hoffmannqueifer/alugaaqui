@@ -6,7 +6,7 @@ RUN npm run build
 
 
 FROM nginx:alpine
-COPY --from=builder /app/dist/alugaaquiadmin urs/share/nginx/html
+COPY --from=builder /app/dist/alugaaquiadmin /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY mime.types /etc/nginx/mime.types
 EXPOSE 80

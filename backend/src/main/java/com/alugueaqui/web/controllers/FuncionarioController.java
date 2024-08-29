@@ -141,7 +141,7 @@ public class FuncionarioController {
                     )
             })
     @GetMapping("/detalhes")
-    @PreAuthorize("hasRole('FUNCIONARIO')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('FUNCIONARIO')")
     public ResponseEntity<FuncionarioResponseDto> getAll(@AuthenticationPrincipal JwtUserDetails userDetails) {
         Funcionario funcionario = funcionarioService.buscarPorUsuarioId(userDetails.getId());
         return ResponseEntity.ok(FuncionarioMapper.toDto(funcionario));
