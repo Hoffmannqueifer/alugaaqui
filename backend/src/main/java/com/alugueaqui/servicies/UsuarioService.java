@@ -23,11 +23,14 @@ public class UsuarioService {
     @Transactional
     public Usuario salvar(Usuario usuario) {
         try {
+            if(usuarioRepository.existsByUsername(usuario.getUsername())) {
+                throw new UsernameUniqueViolationException(String.format("Username {%s} já cadastrado",
+                        usuario.getUsername()));
+            }
             usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
             return usuarioRepository.save(usuario);
         } catch (DataIntegrityViolationException exception){
-            throw new UsernameUniqueViolationException(String.format("Username {%s} já cadastrado",
-                    usuario.getUsername()));
+            throw new DataIntegrityViolationException(String.format("Usuário '%s' não pode ser cadastrado", usuario.getUsername())+ exception.getMessage());
         }
     }
 
