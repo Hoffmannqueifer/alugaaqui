@@ -1,17 +1,16 @@
 package com.alugueaqui.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 
 @Entity
-@Table(name = "IMOVEIS_TIPOS")
-public class ImovelCategoria {
+@Table(name = "TB_IMOVEIS_TIPOS")
+public class ImovelCategoria  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_imovel_categoria")
     private Long id;
 
     private String descricao;

@@ -17,13 +17,13 @@ import java.util.Objects;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "USUARIOS")
+@Table(name = "TB_USUARIOS")
 @EntityListeners(AuditingEntityListener.class)
 public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_usuario")
     private Long id;
     @Column(name = "username", nullable = false, unique = true, length = 100)
     private String username;

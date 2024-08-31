@@ -13,8 +13,6 @@ public class VeiculoService {
 
     private final VeiculoRepository veiculoRepository;
 
-    private final ItemService itemService;
-
     public Veiculo salvar(Veiculo veiculo) {
         try{
 

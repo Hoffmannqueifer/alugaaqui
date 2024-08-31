@@ -5,14 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "clientes")
-public class Cliente {
+@Table(name = "TB_CLIENTES")
+public class Cliente  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_cliente")
     private Long id;
 
     @Column(name = "nome")

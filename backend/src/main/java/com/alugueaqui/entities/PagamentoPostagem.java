@@ -10,11 +10,12 @@ import java.time.LocalDateTime;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "pagamentos")
+@Table(name = "TB_PAGAMENTOS_POSTAGENS")
 public class PagamentoPostagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pagamento_postagem")
     private Long id;
 
     @Column(name = "data", nullable = false)
@@ -30,7 +31,7 @@ public class PagamentoPostagem {
     @Column(name = "status", nullable = false, length = 50)
     private String status;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "postagem_id", nullable = false)
     private Postagem postagem;
 

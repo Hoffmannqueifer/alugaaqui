@@ -16,8 +16,6 @@ public class ImovelService {
 
     private final ImovelRepository imovelRepository;
 
-    private final ItemService itemService;
-
     @Transactional
     public Imovel criarImovel(Imovel imovel) {
 

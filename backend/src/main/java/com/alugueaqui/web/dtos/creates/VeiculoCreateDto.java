@@ -30,6 +30,6 @@ public class VeiculoCreateDto {
     private Integer numPortas;
 
     @NotNull(message = "Categoria do veículo é obrigatória")
-    private Long veiculoCategoriaId;  // ID da categoria do veículo
+    private Long veiculoCategoriaId;
 
 }

@@ -2,7 +2,7 @@ package com.alugueaqui.servicies;
 
 import com.alugueaqui.entities.Endereco;
 import com.alugueaqui.entities.Item;
-import com.alugueaqui.repositories.EnderecoRepository;
+import com.alugueaqui.entities.Veiculo;
 import com.alugueaqui.repositories.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,12 +18,25 @@ import java.util.NoSuchElementException;
 public class ItemService {
 
     private final ItemRepository itemRepository;
-    private final EnderecoRepository enderecoRepository;
+    private final VeiculoService veiculoService;
+    private final EnderecoService enderecoService;
 
 
     @Transactional
     public Item salvar(Item item) {
         validateCamposItem(item);
+
+        if (item.getVeiculo() != null) {
+            Veiculo veiculoSalvo = veiculoService.salvar(item.getVeiculo());
+            item.setVeiculo(veiculoSalvo);
+        }
+
+        if (item.getEndereco() == null) {
+            throw new IllegalArgumentException("Endereço do item não pode ser vazio.");
+        }
+
+        Endereco enderecoSalvo = enderecoService.salvar(item.getEndereco());
+        item.setEndereco(enderecoSalvo);
         return itemRepository.save(item);
     }
 
@@ -32,9 +45,7 @@ public class ItemService {
                 .orElseThrow(() -> new NoSuchElementException(String.format("Item '%s'  não encontrado: ", id)));
     }
 
-    public Endereco salvarEndereco(Endereco endereco) {
-        return enderecoRepository.save(endereco);
-    }
+
 
     public void deletarItem(Long id) {
         if (!itemRepository.existsById(id)) {

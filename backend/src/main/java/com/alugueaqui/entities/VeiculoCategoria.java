@@ -1,17 +1,16 @@
 package com.alugueaqui.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 
 @Entity
-@Table(name = "VEICULOS_TIPOS")
-public class VeiculoCategoria {
+@Table(name = "TB_VEICULOS_CATEGORIAS")
+public class VeiculoCategoria  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_veiculo_categoria")
     private Long id;
 
     private String descricao;

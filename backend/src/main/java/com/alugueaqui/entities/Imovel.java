@@ -5,13 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "IMOVEIS")
-public class Imovel {
+@Table(name = "TB_IMOVEIS")
+public class Imovel  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_imovel")
     private Long id;
 
     @Column(name = "comprimento")

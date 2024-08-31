@@ -1,15 +1,11 @@
 package com.alugueaqui.web.controllers;
 
 import com.alugueaqui.entities.Item;
-import com.alugueaqui.servicies.EnderecoService;
 import com.alugueaqui.servicies.ItemService;
-import com.alugueaqui.servicies.VeiculoService;
 import com.alugueaqui.web.dtos.PageableDto;
 import com.alugueaqui.web.dtos.creates.ItemCreateDto;
-import com.alugueaqui.web.dtos.mappers.EnderecoMapper;
 import com.alugueaqui.web.dtos.mappers.ItemMapper;
 import com.alugueaqui.web.dtos.mappers.PageableMapper;
-import com.alugueaqui.web.dtos.mappers.VeiculoMapper;
 import com.alugueaqui.web.dtos.responses.ItemResponseDto;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,35 +26,28 @@ import org.springframework.web.bind.annotation.*;
 public class ItemController {
 
     private final ItemService itemService;
-    private final VeiculoService veiculoService;
-    private final EnderecoService enderecoService;
 
     @PostMapping("/veiculos")
     @PreAuthorize("hasRole('FUNCIONARIO') or hasRole('ADMIN')")
     public ResponseEntity<ItemResponseDto> create(@RequestBody @Valid ItemCreateDto itemCreateDto) {
 
-        Item item = ItemMapper.toItem(itemCreateDto);
-
-        processarVeiculo(item, itemCreateDto);
-        processarEndereco(item, itemCreateDto);
-
-        Item itemSalvo = itemService.salvar(item);
+        Item itemSalvo = itemService.salvar(ItemMapper.toItem(itemCreateDto));
         return ResponseEntity.status(201).body(ItemMapper.toDto(itemSalvo));
     }
 
-    private void processarVeiculo(Item item,ItemCreateDto itemCreateDto) {
-        if (itemCreateDto.getVeiculo() != null) {
-            item.setVeiculo(veiculoService.salvar(
-                    VeiculoMapper.toVeiculo(itemCreateDto.getVeiculo())));
-        }
-    }
-
-    private void processarEndereco(Item item,ItemCreateDto itemCreateDto) {
-        if (itemCreateDto.getEndereco() != null) {
-            item.setEndereco(enderecoService.salvar(
-                    EnderecoMapper.toEndereco(itemCreateDto.getEndereco())));
-        }
-    }
+//    private Veiculo convertDtoToVeiculo(Item item,ItemCreateDto itemCreateDto) {
+//        if (itemCreateDto.getVeiculo() != null) {
+//            return VeiculoMapper.toVeiculo(itemCreateDto.getVeiculo());
+//        }
+//        return null;
+//    }
+//
+//    private Endereco convertDtoToEndereco(Item item, ItemCreateDto itemCreateDto) {
+//        if (itemCreateDto.getEndereco() != null) {
+//            return EnderecoMapper.toEndereco(itemCreateDto.getEndereco());
+//        }
+//        return null;
+//    }
 
     @GetMapping
     @PreAuthorize("hasRole('FUNCIONARIO') or hasRole('ADMIN')")

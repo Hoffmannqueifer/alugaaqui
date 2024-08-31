@@ -9,11 +9,12 @@ import java.io.Serializable;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "ENDERECOS")
+@Table(name = "TB_ENDERECOS")
 public class Endereco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_endereco")
     private Long id;
 
     @Column(name = "logradouro", nullable = false, length = 100)

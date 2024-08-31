@@ -16,13 +16,13 @@ import java.util.Objects;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "FUNCIONARIOS")
+@Table(name = "TB_FUNCIONARIOS")
 @EntityListeners(AuditingEntityListener.class)
 public class Funcionario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_funcionario")
     private Long id;
     @Column(name = "nome", nullable = false, length = 200)
     private String nome;

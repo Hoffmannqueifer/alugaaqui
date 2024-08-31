@@ -35,9 +35,9 @@ public class ItemCreateDto {
     private String observacao;
 
     @Valid
-    VeiculoCreateDto veiculo;
+    private VeiculoCreateDto veiculo;
 
     @Valid
-    EnderecoCreateDto endereco;
+    private EnderecoCreateDto endereco;
 
 }

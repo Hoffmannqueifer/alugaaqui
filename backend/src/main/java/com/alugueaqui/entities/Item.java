@@ -9,14 +9,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.io.Serializable;
+
 @Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "ITENS")
+@Table(name = "TB_ITENS")
 @EntityListeners(AuditingEntityListener.class)
-public class Item {
+public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_item")
     private Long id;
 
     @Column(name = "quantidade", nullable = false)
@@ -48,7 +51,7 @@ public class Item {
     @Column(name = "stregistro")
     private Integer statusRegistro = 1;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id", nullable = false)
     private Endereco endereco;
 
@@ -56,11 +59,11 @@ public class Item {
     @Column(name = "item_negociado", nullable = false)
     private ItemNegociadoTipo itemNegociadoTipo;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "veiculo_id")
     private Veiculo veiculo;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "imovel_id")
     private Imovel imovel;
 

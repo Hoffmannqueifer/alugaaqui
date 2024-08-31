@@ -17,12 +17,13 @@ import java.util.List;
 
 @Getter @Setter @NoArgsConstructor
 @Entity
-@Table(name = "POSTAGENS")
+@Table(name = "TB_POSTAGENS")
 @EntityListeners(AuditingEntityListener.class)
 public class Postagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_postagem")
     private Long id;
 
     @Column(name = "titulo", nullable = false, length = 200)
@@ -38,8 +39,8 @@ public class Postagem {
     @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Imagem> imagens = new ArrayList<>();
 
-    @OneToOne(mappedBy = "postagem")
-    private PagamentoPostagem pagamento;
+    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PagamentoPostagem> pagamentos = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
