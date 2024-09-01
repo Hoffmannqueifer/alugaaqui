@@ -8,7 +8,7 @@ h1 {
     width: 100%; 
     box-sizing: border-box; /* Garante que o padding não extrapole a largura do h1, bom para deixar responsivo */
     padding: 3rem 35%;
-    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(37,97,207,1) 0%, rgba(0,212,255,1) 100%);
+    background: var(--corBackgroundPrincipais);
 
     font-family: 'Playfair Display', serif; 
     color: #fff; 

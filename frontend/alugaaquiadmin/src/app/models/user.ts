@@ -1,7 +1,10 @@
-export interface User{
+export interface User {
     id: number;
-    email: string;
-    senha: string;
-    cpf: string;
     nome: string;
+    cpf: string;
+    celular: string;
+    usuario: {
+        username: string;
+        password: string;
+    };
 }

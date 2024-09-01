@@ -1,26 +1,25 @@
 package com.alugueaqui.jwt;
 
-import com.alugueaqui.entities.Administrador;
-import com.alugueaqui.enums.Perfil;
+import com.alugueaqui.entities.Usuario;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
 public class JwtUserDetails extends User {
 
-    private Administrador usuario;
+    private Usuario usuario;
 
-    public JwtUserDetails(Administrador usuario) {
-        super(usuario.getEmail(), usuario.getSenha(), AuthorityUtils.createAuthorityList(
-                Perfil.ADMIN.getDescricao()));
+    public JwtUserDetails(Usuario usuario) {
+        super(usuario.getUsername(), usuario.getPassword(), AuthorityUtils.createAuthorityList(
+                usuario.getRole().name()));
         this.usuario = usuario;
     }
 
-    public Integer getId() {
-        return usuario.getId();
+    public Long getId() {
+        return this.usuario.getId();
     }
 
     public String getRole() {
-        return Perfil.ADMIN.getDescricao();
+        return this.usuario.getRole().name();
     }
 
 

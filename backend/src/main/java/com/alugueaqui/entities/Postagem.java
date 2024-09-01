@@ -1,73 +1,83 @@
 package com.alugueaqui.entities;
 
-import java.util.Base64;
-import java.util.Date;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
+@Getter @Setter @NoArgsConstructor
 @Entity
+@Table(name = "TB_POSTAGENS")
+@EntityListeners(AuditingEntityListener.class)
 public class Postagem {
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String tipoPostagem;
-	private String descricao;
-	private String localidade;
-	private Date dataPostagem;
-	private String base64Image;
-	
-	public Postagem() {
-		
-	}
-	
-	public Postagem(Integer id, String tipoPostagem, String descricao, String localidade, Date dataPostagem, String base64Image) {
-        this.id = id;
-        this.tipoPostagem = tipoPostagem;
-        this.descricao = descricao;
-        this.localidade = localidade;
-        this.dataPostagem = dataPostagem;
-        this.base64Image = base64Image;
-    }
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getTipoPostagem() {
-		return tipoPostagem;
-	}
-	public void setTipoPostagem(String tipoPostagem) {
-		this.tipoPostagem = tipoPostagem;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public String getLocalidade() {
-		return localidade;
-	}
-	public void setLocalidade(String localidade) {
-		this.localidade = localidade;
-	}
-	public Date getDataPostagem() {
-		return dataPostagem;
-	}
-	public void setDataPostagem(Date dataPostagem) {
-		this.dataPostagem = dataPostagem;
-	}
-	public String getBase64Image() {
-		return base64Image;
-	}
-	public void setBase64Image(byte[] imageBytes) {
-		this.base64Image = Base64.getEncoder().encodeToString(imageBytes);
-	}
+    @Column(name = "id_postagem")
+    private Long id;
 
+    @Column(name = "titulo", nullable = false, length = 200)
+    private String titulo;
+
+    @Column(name = "descricao", nullable = false, length = 300)
+    private String descricao;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id", nullable = false)
+    private Item item;
+
+    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Imagem> imagens;
+
+    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<PagamentoPostagem> pagamentos;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
+    @Column(name = "data_encerramento")
+    private LocalDate dataFim;
+
+    @CreatedDate
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
+
+    @LastModifiedDate
+    @Column(name = "data_modificacao")
+    private LocalDateTime dataModificacao;
+
+    @CreatedBy
+    @Column(name = "criado_por")
+    private String criadoPor;
+
+    @LastModifiedBy
+    @Column(name = "modificado_por")
+    private String modificadoPor;
+
+    @Column(name = "stregistro")
+    private Integer statusRegistro = 1;
+
+    public void setImagens(List<Imagem> imagens) {
+        this.imagens = imagens;
+        for (Imagem imagem : imagens) {
+            imagem.setPostagem(this); // relação bidirecional
+        }
+    }
+
+    public void setPagamentos(List<PagamentoPostagem> pagamentos) {
+        this.pagamentos = pagamentos;
+        for (PagamentoPostagem pagamento : pagamentos) {
+            pagamento.setPostagem(this); // relação bidirecional
+        }
+    }
 }

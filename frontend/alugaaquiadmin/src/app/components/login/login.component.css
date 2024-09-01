@@ -1,6 +1,6 @@
 .container {
     height: 100%;
-    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(37,97,207,1) 0%, rgba(0,212,255,1) 100%);
+    background: var(--corBackgroundPrincipais);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,6 +33,14 @@ img {
 button {
     margin-top: 0.5rem;
 }
+
+.loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+  }
 
 
 /* Media query para telas muito pequenas */

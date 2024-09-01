@@ -2,11 +2,11 @@
     <mat-drawer #drawer class="sidenav" mode="side">
         <img src="assets/img/side-image.svg" alt="Imagem de navegação">
       <mat-nav-list class="nav-list">
-        <a mat-list-item routerLink="home" >
+        <a mat-list-item routerLink="home" style="color: aliceblue;">
             <i class="material-icons" >home</i>
             Home
         </a>
-        <a mat-list-item routerLink="users">
+        <a *ngIf="isAdmin" mat-list-item routerLink="users">
             <i class="material-icons">account_circle</i>
             Usuários
         </a>

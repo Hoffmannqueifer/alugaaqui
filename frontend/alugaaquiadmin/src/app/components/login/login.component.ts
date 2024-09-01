@@ -14,26 +14,27 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent {
 
   creds: Credenciais = {
-    email: '',
-    senha: ''
+    username: '',
+    password: ''
   }
 
   email = new FormControl(null, Validators.email);
-  senha = new FormControl(null, Validators.minLength(8));
-
+  senha = new FormControl(null, Validators.minLength(6));
+  isLoading: boolean = false;
   constructor(private toast: ToastrService, private service: AuthService, private router: Router){
 
   }
   logar(){
+    this.isLoading = true;
     this.service.authenticate(this.creds).subscribe(resposta => {
-      const authToken = resposta.headers?.get('Authorization')?.substring(7);
-      if(authToken){
-        this.service.sucessFullLogin(authToken)
+      if(resposta){
+        this.isLoading = false;
         this.router.navigate([''])
       }else{
         this.toast.error('Token de autenticação não encontrado', 'Login');
       }
     }, () => {
+      this.isLoading = false;
       this.toast.error('Usuário e/ou senha inválidos!!', 'Login')
     });
   }
