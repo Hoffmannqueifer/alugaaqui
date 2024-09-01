@@ -18,7 +18,6 @@ export class NavComponent {
   }
 
   ngOnInit(): void {
-    this.router.navigate(['home']);
     this.isAdmin = this.authService.isAdmin();
     this.isFuncionario = this.authService.isFuncionario();
   }
