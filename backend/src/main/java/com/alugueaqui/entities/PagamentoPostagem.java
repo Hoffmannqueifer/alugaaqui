@@ -31,8 +31,8 @@ public class PagamentoPostagem {
     @Column(name = "status", nullable = false, length = 50)
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "postagem_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "postagem_id", nullable = true)
     private Postagem postagem;
 
     @Column(name = "observacao")

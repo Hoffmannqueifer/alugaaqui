@@ -25,7 +25,7 @@ public class Imagem implements Serializable {
     private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name = "postagem_id")
+    @JoinColumn(name = "postagem_id", nullable = true)
     private Postagem postagem;
 
     @Column(name = "stregistro")

@@ -1,7 +1,7 @@
 package com.alugueaqui.web.controllers;
 
-import com.alugueaqui.entities.ImovelCategoria;
-import com.alugueaqui.servicies.ImovelCategoriaService;
+import com.alugueaqui.entities.VeiculoCategoria;
+import com.alugueaqui.servicies.VeiculoCategoriaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -19,13 +19,13 @@ import java.util.List;
 @RequestMapping(path = "/api/v1/categorias/veiculos", produces = MediaType.APPLICATION_JSON_VALUE)
 public class VeiculoCategoriaController {
 
-    private final ImovelCategoriaService imovelCategoriaService;
+    private final VeiculoCategoriaService veiculoCategoriaService;
 
     @GetMapping()
     @PreAuthorize("hasRole('FUNCIONARIO')")
-    public ResponseEntity<List<ImovelCategoria>> getAll() {
-        List<ImovelCategoria> imoveisCategoria = imovelCategoriaService.buscarTodos();
-        return ResponseEntity.ok(imoveisCategoria);
+    public ResponseEntity<List<VeiculoCategoria>> getAll() {
+        List<VeiculoCategoria> veiculoCategorias = veiculoCategoriaService.buscarTodos();
+        return ResponseEntity.ok(veiculoCategorias);
     }
 }
 

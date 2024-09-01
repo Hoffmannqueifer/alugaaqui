@@ -12,7 +12,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter @Setter @NoArgsConstructor
@@ -36,11 +35,11 @@ public class Postagem {
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
-    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Imagem> imagens = new ArrayList<>();
+    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Imagem> imagens;
 
-    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PagamentoPostagem> pagamentos = new ArrayList<>();
+    @OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<PagamentoPostagem> pagamentos;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id", nullable = false)
@@ -67,4 +66,18 @@ public class Postagem {
 
     @Column(name = "stregistro")
     private Integer statusRegistro = 1;
+
+    public void setImagens(List<Imagem> imagens) {
+        this.imagens = imagens;
+        for (Imagem imagem : imagens) {
+            imagem.setPostagem(this); // relação bidirecional
+        }
+    }
+
+    public void setPagamentos(List<PagamentoPostagem> pagamentos) {
+        this.pagamentos = pagamentos;
+        for (PagamentoPostagem pagamento : pagamentos) {
+            pagamento.setPostagem(this); // relação bidirecional
+        }
+    }
 }

@@ -1,7 +1,7 @@
 package com.alugueaqui.enums;
 
 public enum PagamentoTipo {
-    PIX(1, "Pix"),
+    PIX(1, "PIX"),
     CARTAO_CREDITO(2, "CARTAO DE CREDITO"),
     CARTAO_DEBITO(3, "CARTAO DE DEBITO"),
     BOLETO(4, "BOLERO BANCARIO"),

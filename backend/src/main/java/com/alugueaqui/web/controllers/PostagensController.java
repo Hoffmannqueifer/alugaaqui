@@ -1,6 +1,7 @@
 package com.alugueaqui.web.controllers;
 
 import com.alugueaqui.entities.Postagem;
+import com.alugueaqui.enums.PagamentoTipo;
 import com.alugueaqui.servicies.ImagemService;
 import com.alugueaqui.servicies.PagamentoPostagemService;
 import com.alugueaqui.servicies.PostagemService;
@@ -16,10 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Tag(name = "Postagens", description = "Contém todas as operações relativas aos recursos de cadastro, edição e leitura")
 @RequiredArgsConstructor
@@ -53,5 +54,11 @@ public class PostagensController {
         if (postagemCreateDto.getPagamento() != null) {
             postagem.setPagamentos(PagamentoMapper.toPagamentos(postagemCreateDto.getPagamento()));
         }
+    }
+
+    @GetMapping("/pagamento-tipos")
+    @PreAuthorize("hasRole('FUNCIONARIO') or hasRole('ADMIN')")
+    public List<PagamentoTipo> getListPagamentoTipo() {
+        return Arrays.asList(PagamentoTipo.values());
     }
 }

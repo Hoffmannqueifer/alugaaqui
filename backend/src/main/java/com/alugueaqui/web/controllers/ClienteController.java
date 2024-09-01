@@ -56,7 +56,7 @@ public class ClienteController {
             }
     )
     @PostMapping
-    @PreAuthorize("hasRole('FUNCIONARIO')")
+    @PreAuthorize("hasRole('FUNCIONARIO') or hasRole('ADMIN')")
     public ResponseEntity<ClienteResponseDto> create(@RequestBody @Valid ClienteCreateDto clienteCreateDto) {
 
         Cliente cliente = ClienteMapper.toCliente(clienteCreateDto);

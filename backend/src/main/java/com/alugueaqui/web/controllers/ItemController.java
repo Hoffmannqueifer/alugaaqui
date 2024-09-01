@@ -1,6 +1,9 @@
 package com.alugueaqui.web.controllers;
 
 import com.alugueaqui.entities.Item;
+import com.alugueaqui.enums.EstadoItemTipo;
+import com.alugueaqui.enums.ItemNegociadoTipo;
+import com.alugueaqui.enums.NegociacaoTipo;
 import com.alugueaqui.servicies.ItemService;
 import com.alugueaqui.web.dtos.PageableDto;
 import com.alugueaqui.web.dtos.creates.ItemCreateDto;
@@ -19,6 +22,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Tag(name = "Itens", description = "Contém todas as operações relativas aos recursos de cadastro, edição e leitura")
 @RequiredArgsConstructor
 @RestController
@@ -35,19 +41,20 @@ public class ItemController {
         return ResponseEntity.status(201).body(ItemMapper.toDto(itemSalvo));
     }
 
-//    private Veiculo convertDtoToVeiculo(Item item,ItemCreateDto itemCreateDto) {
-//        if (itemCreateDto.getVeiculo() != null) {
-//            return VeiculoMapper.toVeiculo(itemCreateDto.getVeiculo());
-//        }
-//        return null;
-//    }
-//
-//    private Endereco convertDtoToEndereco(Item item, ItemCreateDto itemCreateDto) {
-//        if (itemCreateDto.getEndereco() != null) {
-//            return EnderecoMapper.toEndereco(itemCreateDto.getEndereco());
-//        }
-//        return null;
-//    }
+    @GetMapping("/item-negociado-tipos")
+    public List<ItemNegociadoTipo> getListItemNegociadoTipos() {
+        return Arrays.asList(ItemNegociadoTipo.values());
+    }
+
+    @GetMapping("/estado-item-tipos")
+    public List<EstadoItemTipo> getListEstadoItemTipo() {
+        return Arrays.asList(EstadoItemTipo.values());
+    }
+
+    @GetMapping("/negociacao-tipos")
+    public List<NegociacaoTipo> getListNegocioacoTipo() {
+        return Arrays.asList(NegociacaoTipo.values());
+    }
 
     @GetMapping
     @PreAuthorize("hasRole('FUNCIONARIO') or hasRole('ADMIN')")
