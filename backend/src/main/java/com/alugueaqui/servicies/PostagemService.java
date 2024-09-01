@@ -5,6 +5,8 @@ import com.alugueaqui.repositories.PostagemRepository;
 import com.alugueaqui.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,7 +42,7 @@ public class PostagemService {
 
             processarImagens(postagem);
             processarPagamentos(postagem);
-            
+
             return postagemRepository.save(postagem);
 
         } catch (DataIntegrityViolationException exception) {
@@ -75,5 +77,10 @@ public class PostagemService {
                 pagamentoPostagem.setPostagem(postagem);
             }
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Postagem> buscarTodos(Pageable pageable) {
+        return postagemRepository.findAllPageable(pageable);
     }
 }

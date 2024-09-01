@@ -5,14 +5,20 @@ import com.alugueaqui.enums.PagamentoTipo;
 import com.alugueaqui.servicies.ImagemService;
 import com.alugueaqui.servicies.PagamentoPostagemService;
 import com.alugueaqui.servicies.PostagemService;
+import com.alugueaqui.web.dtos.PageableDto;
 import com.alugueaqui.web.dtos.creates.PostagemCreateDto;
 import com.alugueaqui.web.dtos.mappers.ImagemMapper;
 import com.alugueaqui.web.dtos.mappers.PagamentoMapper;
+import com.alugueaqui.web.dtos.mappers.PageableMapper;
 import com.alugueaqui.web.dtos.mappers.PostagemMapper;
 import com.alugueaqui.web.dtos.responses.PostagemResponseDto;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -60,5 +66,18 @@ public class PostagensController {
     @PreAuthorize("hasRole('FUNCIONARIO') or hasRole('ADMIN')")
     public List<PagamentoTipo> getListPagamentoTipo() {
         return Arrays.asList(PagamentoTipo.values());
+    }
+
+
+    @GetMapping
+    @PreAuthorize("hasRole('FUNCIONARIO') or hasRole('ADMIN')")
+    public ResponseEntity<PageableDto> getAll(
+            @Parameter(hidden = true)
+            @PageableDefault(size = 5, sort = {"titulo"}) Pageable pageable) {
+
+        Page<Postagem> postagens = postagemService.buscarTodos(pageable);
+        Page<PostagemResponseDto> dtoPage = postagens.map(PostagemMapper::toDto);
+
+        return ResponseEntity.ok(PageableMapper.toDto(dtoPage));
     }
 }
